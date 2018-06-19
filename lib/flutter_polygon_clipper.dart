@@ -8,7 +8,12 @@ class ClipPolygon extends StatelessWidget {
   final double rotate;
   final double borderRadius;
 
-  ClipPolygon({@required this.child, @required this.vertices, this.rotate, this.borderRadius});
+  ClipPolygon({
+    @required this.child,
+    @required this.vertices,
+    this.rotate: 0.0,
+    this.borderRadius: 0.0,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -17,8 +22,8 @@ class ClipPolygon extends StatelessWidget {
       child: new ClipPath(
         clipper: new Polygon(
           vertices: vertices < 3 ? 3 : vertices,
-          rotate: rotate == null ? 0.0 : rotate,
-          borderRadius: borderRadius == null ? 0.0 : borderRadius,
+          rotate: rotate,
+          borderRadius: borderRadius,
         ),
         child: child,
       ),
