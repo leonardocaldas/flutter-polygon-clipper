@@ -1,0 +1,12 @@
+name: flutter_polygon_clipper
+description: Flutter Custom Clipper using Polygon shapes
+version: 0.0.1
+author: Leonardo Caldas <leonardo.ferreira.caldas@gmail.com>
+homepage: https://github.com/leonardocaldas/flutter-polygon-clipper
+
+dependencies:
+  flutter:
+    sdk: flutter
+
+environment:
+  sdk: ">=1.19.0 <2.0.0"
