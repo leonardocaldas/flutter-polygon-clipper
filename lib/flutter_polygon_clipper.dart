@@ -40,33 +40,86 @@ class Polygon extends CustomClipper<Path> {
 
   @override
   Path getClip(Size size) {
-    final anglePerSide = 360 / vertices;
+    final insideAngles = 360 / vertices;
+    final outsideAngles = 180 - insideAngles;
+    Offset offsetCut = _getBorderRadiusCut(borderRadius, outsideAngles);
+
     final radius = size.width / 2;
 
     Path path = new Path();
 
     for (var i = 0; i <= vertices; i++) {
-      final angle = anglePerSide * i - 90 + rotate;
-      final radian = angle * (pi / 180);
-      final x = roundOffset(radius + cos(radian) * radius);
-      final y = roundOffset(radius + sin(radian) * radius);
+      double fullAngle = insideAngles * i;
+      int quadrant = _getQuadrant(fullAngle);
+      Offset offset = _getOffset(fullAngle, rotate, radius);
+
+      Offset forward = _getOffsetForward(offset, offsetCut, quadrant);
+      Offset backward = _getOffsetBackward(offset, offsetCut, quadrant);
 
       if (i == 0) {
-        path.moveTo(x, y);
+        path.moveTo(forward.dx, forward.dy);
       } else {
-        path.lineTo(x, y);
+        path.lineTo(backward.dx, backward.dy);
+        path.arcToPoint(forward, radius: new Radius.circular(10.0));
       }
     }
 
     return path;
   }
 
+  Offset _getOffsetForward(Offset offset, Offset cut, int quadrant) {
+    double dx = offset.dx, dy = offset.dy;
+
+    dx += quadrant == 1 || quadrant == 2 ? -cut.dx : cut.dx;
+    dy += quadrant == 2 || quadrant == 3 ? cut.dy : -cut.dy;
+
+    return new Offset(dx, dy);
+  }
+
+  Offset _getOffsetBackward(Offset offset, Offset cut, int quadrant) {
+    double dx = offset.dx, dy = offset.dy;
+
+    dx += quadrant == 1 || quadrant == 2 ? cut.dx : -cut.dx;
+    dy += quadrant == 2 || quadrant == 3 ? -cut.dy : cut.dy;
+
+    return new Offset(dx, dy);
+  }
+
+  int _getQuadrant(double angle) {
+    if (angle >= 0 && angle <= 90) return 1;
+    else if (angle > 90 && angle <= 180) return 2;
+    else if (angle > 180 && angle <= 270) return 3;
+    else return 4;
+  }
+
+  Offset _getBorderRadiusCut(double borderRadius, double outsideAngles) {
+    if (borderRadius == 0) {
+      return const Offset(0.0, 0.0);
+    }
+
+    double halfOutsideAngle = outsideAngles / 2;
+    double dx = borderRadius * cos(_angleToRadian(halfOutsideAngle));
+    double dy = borderRadius * sin(_angleToRadian(halfOutsideAngle));
+
+    return new Offset(dx, dy);
+  }
+
+  double _angleToRadian(double angle) {
+    return angle * (pi / 180);
+  }
+
+  Offset _getOffset(double angle, double rotation, double radius) {
+    final rotationAwareAngle = angle - 90 + rotation;
+
+    final radian = _angleToRadian(rotationAwareAngle);
+    final x = radius + cos(radian) * radius;
+    final y = radius + sin(radian) * radius;
+
+    return new Offset(x, y);
+  }
+
   @override
   bool shouldReclip(CustomClipper<Path> oldClipper) {
     return true;
   }
-}
-
-double roundOffset(double value) {
-  return double.parse(value.toStringAsFixed(3));
 }
