@@ -23,7 +23,7 @@ class ClipPolygon extends StatelessWidget {
         clipper: new Polygon(
           vertices: vertices < 3 ? 3 : vertices,
           rotate: rotate,
-          borderRadius: borderRadius,
+          borderRadiusAngle: borderRadius,
         ),
         child: child,
       ),
@@ -34,86 +34,69 @@ class ClipPolygon extends StatelessWidget {
 class Polygon extends CustomClipper<Path> {
   final int vertices;
   final double rotate;
-  final double borderRadius;
+  final double borderRadiusAngle;
+  final double halfBRAngle;
 
-  Polygon({@required this.vertices, this.rotate, this.borderRadius});
+  Polygon({@required this.vertices, this.rotate, this.borderRadiusAngle})
+      : halfBRAngle = borderRadiusAngle / 2;
 
   @override
   Path getClip(Size size) {
-    final insideAngles = 360 / vertices;
-    final outsideAngles = 180 - insideAngles;
-    Offset offsetCut = _getBorderRadiusCut(borderRadius, outsideAngles);
+    final anglePerSide = 360 / vertices;
 
-    final radius = size.width / 2;
+    final radius = (size.width - borderRadiusAngle) / 2;
+    final arcLength = (radius * _angleToRadian(borderRadiusAngle)) + (vertices * 2);
 
     Path path = new Path();
 
     for (var i = 0; i <= vertices; i++) {
-      double fullAngle = insideAngles * i;
-      int quadrant = _getQuadrant(fullAngle);
-      Offset offset = _getOffset(fullAngle, rotate, radius);
+      double currentAngle = anglePerSide * i;
+      bool isFirst = i == 0;
 
-      Offset forward = _getOffsetForward(offset, offsetCut, quadrant);
-      Offset backward = _getOffsetBackward(offset, offsetCut, quadrant);
-
-      if (i == 0) {
-        path.moveTo(forward.dx, forward.dy);
+      if (borderRadiusAngle > 0) {
+        _drawLineAndArc(path, currentAngle, radius, arcLength, isFirst);
       } else {
-        path.lineTo(backward.dx, backward.dy);
-        path.arcToPoint(forward, radius: new Radius.circular(10.0));
+        _drawLine(path, currentAngle, radius, isFirst);
       }
     }
 
     return path;
   }
 
-  Offset _getOffsetForward(Offset offset, Offset cut, int quadrant) {
-    double dx = offset.dx, dy = offset.dy;
+  _drawLine(Path path, double currentAngle, double radius, bool move) {
+    Offset current = _getOffset(currentAngle, radius);
 
-    dx += quadrant == 1 || quadrant == 2 ? -cut.dx : cut.dx;
-    dy += quadrant == 2 || quadrant == 3 ? cut.dy : -cut.dy;
-
-    return new Offset(dx, dy);
+    if (move)
+      path.moveTo(current.dx, current.dy);
+    else
+      path.lineTo(current.dx, current.dy);
   }
 
-  Offset _getOffsetBackward(Offset offset, Offset cut, int quadrant) {
-    double dx = offset.dx, dy = offset.dy;
+  _drawLineAndArc(Path path, double currentAngle, double radius, double arcLength, bool isFirst) {
+    double prevAngle = currentAngle - halfBRAngle;
+    double nextAngle = currentAngle + halfBRAngle;
 
-    dx += quadrant == 1 || quadrant == 2 ? cut.dx : -cut.dx;
-    dy += quadrant == 2 || quadrant == 3 ? -cut.dy : cut.dy;
+    Offset previous = _getOffset(prevAngle, radius);
+    Offset next = _getOffset(nextAngle, radius);
 
-    return new Offset(dx, dy);
-  }
-
-  int _getQuadrant(double angle) {
-    if (angle >= 0 && angle <= 90) return 1;
-    else if (angle > 90 && angle <= 180) return 2;
-    else if (angle > 180 && angle <= 270) return 3;
-    else return 4;
-  }
-
-  Offset _getBorderRadiusCut(double borderRadius, double outsideAngles) {
-    if (borderRadius == 0) {
-      return const Offset(0.0, 0.0);
+    if (isFirst) {
+      path.moveTo(next.dx, next.dy);
+    } else {
+      path.lineTo(previous.dx, previous.dy);
+      path.arcToPoint(next, radius: new Radius.circular(arcLength));
     }
-
-    double halfOutsideAngle = outsideAngles / 2;
-    double dx = borderRadius * cos(_angleToRadian(halfOutsideAngle));
-    double dy = borderRadius * sin(_angleToRadian(halfOutsideAngle));
-
-    return new Offset(dx, dy);
   }
 
   double _angleToRadian(double angle) {
     return angle * (pi / 180);
   }
 
-  Offset _getOffset(double angle, double rotation, double radius) {
-    final rotationAwareAngle = angle - 90 + rotation;
+  Offset _getOffset(double angle, double radius) {
+    final rotationAwareAngle = angle - 90 + rotate;
 
     final radian = _angleToRadian(rotationAwareAngle);
-    final x = radius + cos(radian) * radius;
-    final y = radius + sin(radian) * radius;
+    final x = cos(radian) * radius + radius + halfBRAngle;
+    final y = sin(radian) * radius + radius + halfBRAngle;
 
     return new Offset(x, y);
   }
