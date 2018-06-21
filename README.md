@@ -27,7 +27,7 @@ new ClipPolygon(
  );
 ```  
   
-## Usage  
+## Parameters  
 
 ##### ClipPolygon
 | Param | Type | Description |
