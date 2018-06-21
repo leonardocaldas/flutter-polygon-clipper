@@ -12,7 +12,7 @@ Add this to your package's pubspec.yaml file:
 
 ```yaml
 dependencies:
-  polygon_clipper: "^0.0.2"
+  polygon_clipper: "^1.0.0"
 ```
   
 ## Usage  
@@ -39,8 +39,8 @@ new ClipPolygon(
 | Param | Type | Description |
  |---|---|---|  
 | sides | int | The number of sides to draw the polygon
-| borderRadius | double | This value is used in degrees.
-| rotate | double | This value is used in degrees.
+| borderRadius | double | The length of the border radius in degrees.
+| rotate | double | The initial polgyon rotation in degrees.
 | child | Widget | The widget that will be rendered inside the polygon.
 | boxShadows | PolygonBoxShadow[] |A list of box shadows.
 
