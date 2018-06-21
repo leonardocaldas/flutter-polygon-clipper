@@ -8,7 +8,12 @@ A Flutter plugin to create views using regular polygon shapes (e.g. Pentagons an
 ![Example3](https://raw.githubusercontent.com/leonardocaldas/flutter-polygon-clipper/assets/imgs/screenshot3.png)
   
 ## Installation  
-To use this plugin, add `polygon_clipper` as a [dependency in your pubspec.yaml file](https://flutter.io/platform-plugins/).  
+Add this to your package's pubspec.yaml file:
+
+```yaml
+dependencies:
+  polygon_clipper: "^0.0.2"
+```
   
 ## Usage  
   
@@ -18,7 +23,8 @@ import 'package:polygon_clipper/polygon_clipper.dart';
   
 new ClipPolygon(  
  sides: 6, 
- borderRadius: 5.0, 
+ borderRadius: 5.0, // Default 0.0 degrees
+ rotate: 90.0, // Default 0.0 degrees
  boxShadows: [  
   new PolygonBoxShadow(color: Colors.black, elevation: 1.0),
   new PolygonBoxShadow(color: Colors.grey, elevation: 5.0)
@@ -32,8 +38,9 @@ new ClipPolygon(
 ##### ClipPolygon
 | Param | Type | Description |
  |---|---|---|  
-| sides | int | The number of sides to draw the polygon |
+| sides | int | The number of sides to draw the polygon
 | borderRadius | double | This value is used in degrees.
+| rotate | double | This value is used in degrees.
 | child | Widget | The widget that will be rendered inside the polygon.
 | boxShadows | PolygonBoxShadow[] |A list of box shadows.
 
