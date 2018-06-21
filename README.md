@@ -2,6 +2,8 @@
 # Polygon Clipper  
   
 A Flutter plugin to create views using regular polygon shapes (e.g. Pentagons and Hexagons).  
+
+[![pub package](https://img.shields.io/pub/v/polygon_clipper.svg)](https://pub.dartlang.org/packages/polygon_clipper)
   
 ![Example1](https://raw.githubusercontent.com/leonardocaldas/flutter-polygon-clipper/assets/imgs/screenshot1.png)
 ![Example2](https://raw.githubusercontent.com/leonardocaldas/flutter-polygon-clipper/assets/imgs/screenshot2.png)
