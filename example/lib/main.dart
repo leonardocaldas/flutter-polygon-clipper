@@ -16,8 +16,8 @@ class ExampleApp extends StatelessWidget {
                   begin: Alignment.topLeft,
                   end: Alignment.bottomRight,
                   colors: [
-                    Colors.red[200],
-                    Colors.red[800],
+                    Colors.blue[200],
+                    Colors.blue[800],
                   ],
                 ),
               ),
