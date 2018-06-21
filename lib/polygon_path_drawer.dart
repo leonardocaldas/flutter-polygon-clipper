@@ -16,8 +16,8 @@ class PolygonPathDrawer {
     final anglePerSide = 360 / specs.sides;
 
     final radius = (size.width - specs.borderRadiusAngle) / 2;
-    final arcLength = (radius * _angleToRadian(specs.borderRadiusAngle)) +
-        (specs.sides * 2);
+    final arcLength =
+        (radius * _angleToRadian(specs.borderRadiusAngle)) + (specs.sides * 2);
 
     Path path = new Path();
 
@@ -73,7 +73,6 @@ class PolygonPathDrawer {
 
     return new Offset(x, y);
   }
-
 }
 
 class PolygonPathSpecs {
