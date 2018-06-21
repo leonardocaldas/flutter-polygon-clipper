@@ -1,7 +1,5 @@
 import 'dart:math';
-
 import 'dart:ui';
-
 import 'package:meta/meta.dart';
 
 class PolygonPathDrawer {
@@ -15,15 +13,15 @@ class PolygonPathDrawer {
   }) : path = new Path();
 
   Path draw() {
-    final anglePerSide = 360 / specs.vertices;
+    final anglePerSide = 360 / specs.sides;
 
     final radius = (size.width - specs.borderRadiusAngle) / 2;
     final arcLength = (radius * _angleToRadian(specs.borderRadiusAngle)) +
-        (specs.vertices * 2);
+        (specs.sides * 2);
 
     Path path = new Path();
 
-    for (var i = 0; i <= specs.vertices; i++) {
+    for (var i = 0; i <= specs.sides; i++) {
       double currentAngle = anglePerSide * i;
       bool isFirst = i == 0;
 
@@ -79,13 +77,13 @@ class PolygonPathDrawer {
 }
 
 class PolygonPathSpecs {
-  final int vertices;
+  final int sides;
   final double rotate;
   final double borderRadiusAngle;
   final double halfBorderRadiusAngle;
 
   PolygonPathSpecs({
-    @required this.vertices,
+    @required this.sides,
     @required this.rotate,
     @required this.borderRadiusAngle,
   }) : halfBorderRadiusAngle = borderRadiusAngle / 2;

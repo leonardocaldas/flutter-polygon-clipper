@@ -1,3 +1,7 @@
-## [0.0.1] - TODO: Add release date.
+## v0.0.1 - First release
 
-* TODO: Describe initial release.
+This release includes:
+
+* Ability to create polygon views
+* Ability to round the corners
+* Ability to add a list of shadows 

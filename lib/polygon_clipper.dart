@@ -1,17 +1,16 @@
 import 'polygon_path_drawer.dart';
 import 'package:flutter/material.dart';
 
-
 class ClipPolygon extends StatelessWidget {
   final Widget child;
-  final int vertices;
+  final int sides;
   final double rotate;
   final double borderRadius;
   final List<PolygonBoxShadow> boxShadows;
 
   ClipPolygon({
     @required this.child,
-    @required this.vertices,
+    @required this.sides,
     this.rotate: 0.0,
     this.borderRadius: 0.0,
     this.boxShadows: const []
@@ -20,7 +19,7 @@ class ClipPolygon extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     PolygonPathSpecs specs = new PolygonPathSpecs(
-      vertices: vertices < 3 ? 3 : vertices,
+      sides: sides < 3 ? 3 : sides,
       rotate: rotate,
       borderRadiusAngle: borderRadius,
     );
@@ -28,7 +27,7 @@ class ClipPolygon extends StatelessWidget {
     return new AspectRatio(
         aspectRatio: 1.0,
         child: new CustomPaint(
-            painter: new BorderAndShadowPainter(specs, boxShadows),
+            painter: new BoxShadowPainter(specs, boxShadows),
             child: new ClipPath(
               clipper: new Polygon(specs),
               child: child,
@@ -57,11 +56,11 @@ class Polygon extends CustomClipper<Path> {
   }
 }
 
-class BorderAndShadowPainter extends CustomPainter {
+class BoxShadowPainter extends CustomPainter {
   final PolygonPathSpecs specs;
   final List<PolygonBoxShadow> boxShadows;
 
-  BorderAndShadowPainter(this.specs, this.boxShadows);
+  BoxShadowPainter(this.specs, this.boxShadows);
 
   @override
   void paint(Canvas canvas, Size size) {
@@ -69,10 +68,10 @@ class BorderAndShadowPainter extends CustomPainter {
         size: size,
         specs: specs
     ).draw();
-
+    
     boxShadows.forEach((PolygonBoxShadow shadow) {
       canvas.drawShadow(
-          path, shadow.color, shadow.elevation, shadow.transparentOccluder);
+          path, shadow.color, shadow.elevation, false);
     });
   }
 
@@ -85,11 +84,9 @@ class BorderAndShadowPainter extends CustomPainter {
 class PolygonBoxShadow {
   final Color color;
   final double elevation;
-  final bool transparentOccluder;
 
   PolygonBoxShadow({
     @required this.color,
     @required this.elevation,
-    this.transparentOccluder: false
   });
 }
