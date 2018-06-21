@@ -23,7 +23,7 @@ new ClipPolygon(
   new PolygonBoxShadow(color: Colors.black, elevation: 1.0),
   new PolygonBoxShadow(color: Colors.grey, elevation: 5.0)
  ],
- child: new Container( color: Colors.black),
+ child: new Container(color: Colors.black),
 );
 ```  
   
