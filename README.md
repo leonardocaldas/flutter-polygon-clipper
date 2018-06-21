@@ -10,7 +10,7 @@ A Flutter plugin to create views using regular polygon shapes (e.g. Pentagons an
 ## Installation  
 To use this plugin, add `polygon_clipper` as a [dependency in your pubspec.yaml file](https://flutter.io/platform-plugins/).  
   
-### Usage  
+## Usage  
   
 ``` dart  
 // Import package  
@@ -27,7 +27,7 @@ new ClipPolygon(
  );
 ```  
   
-### Parameters  
+## Usage  
 
 ##### ClipPolygon
 | Param | Type | Description |
@@ -43,3 +43,7 @@ new ClipPolygon(
  |---|---|---|  
 | color | Color | The color of the box shadow.
 | elevation | double | The distance of the shadow.
+
+## Contributing
+
+If you wish to contribute to this project, I encourage you to open a pull request.
