@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_polygon_clipper/polygon_clipper.dart';
+import 'package:polygon_clipper/polygon_clipper.dart';
 
 void main() => runApp(new ExampleApp());
 
