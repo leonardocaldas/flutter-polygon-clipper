@@ -28,8 +28,7 @@ class ExampleApp extends StatelessWidget {
                   size: 150.0,
                   textDirection: TextDirection.ltr,
                 ),
-              )
-          ),
+              )),
           boxShadows: [
             new PolygonBoxShadow(color: Colors.black, elevation: 5.0),
           ],
