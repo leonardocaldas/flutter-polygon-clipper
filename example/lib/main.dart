@@ -1,18 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:polygon_clipper/polygon_clipper.dart';
 
-void main() => runApp(new ExampleApp());
+void main() => runApp(ExampleApp());
 
 class ExampleApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return new Container(
+    return Container(
       color: Colors.white,
-      child: new Center(
-        child: new ClipPolygon(
-          child: new Container(
-              decoration: new BoxDecoration(
-                gradient: new LinearGradient(
+      child: Center(
+        child: ClipPolygon(
+          child: Container(
+              decoration: BoxDecoration(
+                gradient: LinearGradient(
                   begin: Alignment.topLeft,
                   end: Alignment.bottomRight,
                   colors: [
@@ -21,8 +21,8 @@ class ExampleApp extends StatelessWidget {
                   ],
                 ),
               ),
-              child: new Center(
-                child: new Icon(
+              child: Center(
+                child: Icon(
                   Icons.add_a_photo,
                   color: Colors.white,
                   size: 150.0,
@@ -31,7 +31,7 @@ class ExampleApp extends StatelessWidget {
               )
           ),
           boxShadows: [
-            new PolygonBoxShadow(color: Colors.black, elevation: 5.0),
+            PolygonBoxShadow(color: Colors.black, elevation: 5.0),
           ],
           sides: 6,
           borderRadius: 5.0,

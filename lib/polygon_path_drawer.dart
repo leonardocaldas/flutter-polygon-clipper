@@ -10,7 +10,7 @@ class PolygonPathDrawer {
   PolygonPathDrawer({
     @required this.size,
     @required this.specs,
-  }) : path = new Path();
+  }) : path = Path();
 
   Path draw() {
     final anglePerSide = 360 / specs.sides;
@@ -19,7 +19,7 @@ class PolygonPathDrawer {
     final arcLength =
         (radius * _angleToRadian(specs.borderRadiusAngle)) + (specs.sides * 2);
 
-    Path path = new Path();
+    Path path = Path();
 
     for (var i = 0; i <= specs.sides; i++) {
       double currentAngle = anglePerSide * i;
@@ -56,7 +56,7 @@ class PolygonPathDrawer {
       path.moveTo(next.dx, next.dy);
     } else {
       path.lineTo(previous.dx, previous.dy);
-      path.arcToPoint(next, radius: new Radius.circular(arcLength));
+      path.arcToPoint(next, radius: Radius.circular(arcLength));
     }
   }
 
@@ -71,7 +71,7 @@ class PolygonPathDrawer {
     final x = cos(radian) * radius + radius + specs.halfBorderRadiusAngle;
     final y = sin(radian) * radius + radius + specs.halfBorderRadiusAngle;
 
-    return new Offset(x, y);
+    return Offset(x, y);
   }
 }
 

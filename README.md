@@ -14,7 +14,7 @@ Add this to your package's pubspec.yaml file:
 
 ```yaml
 dependencies:
-  polygon_clipper: "^1.0.0"
+  polygon_clipper: ^1.0.1
 ```
   
 ## Usage  
@@ -23,15 +23,15 @@ dependencies:
 // Import package  
 import 'package:polygon_clipper/polygon_clipper.dart';  
   
-new ClipPolygon(  
+ClipPolygon(  
  sides: 6, 
  borderRadius: 5.0, // Default 0.0 degrees
  rotate: 90.0, // Default 0.0 degrees
  boxShadows: [  
-  new PolygonBoxShadow(color: Colors.black, elevation: 1.0),
-  new PolygonBoxShadow(color: Colors.grey, elevation: 5.0)
+  PolygonBoxShadow(color: Colors.black, elevation: 1.0),
+  PolygonBoxShadow(color: Colors.grey, elevation: 5.0)
  ],
- child: new Container(color: Colors.black),
+ child: Container(color: Colors.black),
 );
 ```  
   
