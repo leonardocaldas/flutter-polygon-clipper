@@ -19,13 +19,10 @@ dependencies:
   
 ## Usage  
   
-Import Package
-``` dart
-import 'package:polygon_clipper/polygon_clipper.dart';  
-```
-  
 Using ClipPolygon widget
 ``` dart
+import 'package:polygon_clipper/polygon_clipper.dart';  // Import package for ClipPolygon
+
 ClipPolygon(  
  sides: 6, 
  borderRadius: 5.0, // Default 0.0 degrees
@@ -40,6 +37,8 @@ ClipPolygon(
 
 Using PolygonBorder shape
 ``` dart
+import 'package:polygon_clipper/polygon_border.dart'; // Import package for PolygonBorder
+
 FloatingActionButton(
   shape: PolygonBorder(
     sides: 5,
@@ -76,7 +75,7 @@ FloatingActionButton(
 | sides | int | The number of sides to draw the polygon
 | borderRadius | double | The length of the border radius in degrees.
 | rotate | double | The initial polygon rotation in degrees.
-| border | BorderSide | The style of the border (when `PolygonBorder` is used in `Container`, etc.)
+| border | BorderSide | The style of the border (when `PolygonBorder` is used as a decoration in `Container`, etc.)
 
 ## Contributing
 
