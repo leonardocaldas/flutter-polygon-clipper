@@ -19,10 +19,10 @@ dependencies:
   
 ## Usage  
   
-``` dart  
-// Import package  
-import 'package:polygon_clipper/polygon_clipper.dart';  
-  
+Using ClipPolygon widget
+``` dart
+import 'package:polygon_clipper/polygon_clipper.dart';  // Import package for ClipPolygon
+
 ClipPolygon(  
  sides: 6, 
  borderRadius: 5.0, // Default 0.0 degrees
@@ -34,6 +34,22 @@ ClipPolygon(
  child: Container(color: Colors.black),
 );
 ```  
+
+Using PolygonBorder shape
+``` dart
+import 'package:polygon_clipper/polygon_border.dart'; // Import package for PolygonBorder
+
+FloatingActionButton(
+  shape: PolygonBorder(
+    sides: 5,
+    borderRadius: 5.0, // Default 0.0 degrees
+    rotate: 90.0, // Default 0.0 degrees
+    border: BorderSide.none, // Default BorderSide.none
+  ),
+  onPressed: runAction,
+  child: Icon(Icons.star),
+),
+```
   
 ## Parameters  
 
@@ -42,7 +58,7 @@ ClipPolygon(
  |---|---|---|  
 | sides | int | The number of sides to draw the polygon
 | borderRadius | double | The length of the border radius in degrees.
-| rotate | double | The initial polgyon rotation in degrees.
+| rotate | double | The initial polygon rotation in degrees.
 | child | Widget | The widget that will be rendered inside the polygon.
 | boxShadows | PolygonBoxShadow[] |A list of box shadows.
 
@@ -52,6 +68,14 @@ ClipPolygon(
  |---|---|---|  
 | color | Color | The color of the box shadow.
 | elevation | double | The distance of the shadow.
+
+##### PolygonBorder
+| Param | Type | Description |
+ |---|---|---|  
+| sides | int | The number of sides to draw the polygon
+| borderRadius | double | The length of the border radius in degrees.
+| rotate | double | The initial polygon rotation in degrees.
+| border | BorderSide | The style of the border (when `PolygonBorder` is used as a decoration in `Container`, etc.)
 
 ## Contributing
 
