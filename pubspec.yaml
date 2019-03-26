@@ -1,6 +1,6 @@
 name: polygon_clipper
 description: A plugin to clip a Widget into a polygon shape. Works with any kind of Widget.
-version: 1.0.1
+version: 1.0.2
 author: Leonardo Caldas <leonardo.ferreira.caldas@gmail.com>
 homepage: https://github.com/leonardocaldas/flutter-polygon-clipper
 

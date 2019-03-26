@@ -14,7 +14,7 @@ Add this to your package's pubspec.yaml file:
 
 ```yaml
 dependencies:
-  polygon_clipper: ^1.0.1
+  polygon_clipper: ^1.0.2
 ```
   
 ## Usage  

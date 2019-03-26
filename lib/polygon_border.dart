@@ -3,7 +3,7 @@ import 'dart:math' as math;
 import 'dart:ui';
 
 import 'package:flutter/painting.dart';
-import 'package:meta/meta.dart';
+import 'package:flutter/widgets.dart';
 import 'polygon_path_drawer.dart';
 
 class PolygonBorder extends ShapeBorder {
