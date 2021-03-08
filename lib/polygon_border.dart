@@ -6,25 +6,25 @@ import 'package:flutter/painting.dart';
 import 'package:flutter/widgets.dart';
 import 'polygon_path_drawer.dart';
 
-class PolygonBorder extends ShapeBorder {
+class PolygonBorder extends OutlinedBorder {
 
   const PolygonBorder({
     @required this.sides,
     this.rotate = 0.0,
     this.borderRadius = 0.0,
-    this.border = BorderSide.none,
+    BorderSide border = BorderSide.none,
   }) : assert(sides != null),
        assert(rotate != null),
        assert(borderRadius != null),
-       assert(border != null);
+       assert(border != null),
+       super(side: border);
 
   final int sides;
   final double rotate;
   final double borderRadius;
-  final BorderSide border;
 
   @override
-  EdgeInsetsGeometry get dimensions => EdgeInsets.all(border.width);
+  EdgeInsetsGeometry get dimensions => EdgeInsets.all(side.width);
 
   Path _getPath(Rect rect, double radius) {
     var specs = PolygonPathSpecs(
@@ -45,7 +45,7 @@ class PolygonBorder extends ShapeBorder {
         sides: sides,
         rotate: lerpDouble(a.rotate, rotate, t),
         borderRadius: lerpDouble(a.borderRadius, borderRadius, t),
-        border: BorderSide.lerp(a.border, border, t),
+        border: BorderSide.lerp(a.side, side, t),
       );
     } else {
       return super.lerpFrom(a, t);
@@ -60,7 +60,7 @@ class PolygonBorder extends ShapeBorder {
         sides: sides,
         rotate: lerpDouble(rotate, b.rotate, t),
         borderRadius: lerpDouble(borderRadius, b.borderRadius, t),
-        border: BorderSide.lerp(border, b.border, t),
+        border: BorderSide.lerp(side, b.side, t),
       );
     } else {
       return super.lerpTo(b, t);
@@ -69,20 +69,20 @@ class PolygonBorder extends ShapeBorder {
 
   @override
   void paint(Canvas canvas, Rect rect, {TextDirection textDirection}) {
-    switch (border.style) {
+    switch (side.style) {
       case BorderStyle.none:
         break;
       case BorderStyle.solid:
-        var radius = (rect.shortestSide - border.width) / 2.0;
+        var radius = (rect.shortestSide - side.width) / 2.0;
         var path = _getPath(rect, radius);
-        canvas.drawPath(path, border.toPaint());
+        canvas.drawPath(path, side.toPaint());
         break;
     }
   }
 
   @override
   Path getInnerPath(Rect rect, {TextDirection textDirection}) {
-    return _getPath(rect, math.max(0.0, rect.shortestSide / 2.0 - border.width));
+    return _getPath(rect, math.max(0.0, rect.shortestSide / 2.0 - side.width));
   }
 
   @override
@@ -95,12 +95,12 @@ class PolygonBorder extends ShapeBorder {
     return PolygonBorder(sides: sides,
         rotate : rotate,
         borderRadius: borderRadius * t,
-        border: border.scale(t));
+        border: side.scale(t));
   }
 
   @override
   int get hashCode {
-    return sides.hashCode ^ rotate.hashCode ^ borderRadius.hashCode ^ border.hashCode;
+    return sides.hashCode ^ rotate.hashCode ^ borderRadius.hashCode ^ side.hashCode;
   }
 
   @override
@@ -111,6 +111,17 @@ class PolygonBorder extends ShapeBorder {
 
     final PolygonBorder typedOther = other;
     return sides == typedOther.sides && rotate == typedOther.rotate &&
-        borderRadius == typedOther.borderRadius && border == typedOther.border;
+        borderRadius == typedOther.borderRadius && side == typedOther.side;
+  }
+
+  @override
+  OutlinedBorder copyWith({BorderSide side}) {
+    if (side == null) return this;
+    return PolygonBorder(
+      sides: sides,
+      border: side,
+      rotate: rotate,
+      borderRadius: borderRadius,
+    );
   }
 }
