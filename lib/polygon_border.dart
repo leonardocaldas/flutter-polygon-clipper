@@ -1,4 +1,3 @@
-
 import 'dart:math' as math;
 import 'dart:ui';
 
@@ -7,17 +6,16 @@ import 'package:flutter/widgets.dart';
 import 'polygon_path_drawer.dart';
 
 class PolygonBorder extends OutlinedBorder {
-
   const PolygonBorder({
     @required this.sides,
     this.rotate = 0.0,
     this.borderRadius = 0.0,
     BorderSide border = BorderSide.none,
-  }) : assert(sides != null),
-       assert(rotate != null),
-       assert(borderRadius != null),
-       assert(border != null),
-       super(side: border);
+  })  : assert(sides != null),
+        assert(rotate != null),
+        assert(borderRadius != null),
+        assert(border != null),
+        super(side: border);
 
   final int sides;
   final double rotate;
@@ -33,10 +31,10 @@ class PolygonBorder extends OutlinedBorder {
       borderRadiusAngle: borderRadius,
     );
 
-    return PolygonPathDrawer(size: Size.fromRadius(radius), specs: specs).draw()
+    return PolygonPathDrawer(size: Size.fromRadius(radius), specs: specs)
+        .draw()
         .shift(Offset(rect.center.dx - radius, rect.center.dy - radius));
   }
-
 
   @override
   ShapeBorder lerpFrom(ShapeBorder a, double t) {
@@ -51,7 +49,6 @@ class PolygonBorder extends OutlinedBorder {
       return super.lerpFrom(a, t);
     }
   }
-
 
   @override
   ShapeBorder lerpTo(ShapeBorder b, double t) {
@@ -92,15 +89,19 @@ class PolygonBorder extends OutlinedBorder {
 
   @override
   ShapeBorder scale(double t) {
-    return PolygonBorder(sides: sides,
-        rotate : rotate,
+    return PolygonBorder(
+        sides: sides,
+        rotate: rotate,
         borderRadius: borderRadius * t,
         border: side.scale(t));
   }
 
   @override
   int get hashCode {
-    return sides.hashCode ^ rotate.hashCode ^ borderRadius.hashCode ^ side.hashCode;
+    return sides.hashCode ^
+        rotate.hashCode ^
+        borderRadius.hashCode ^
+        side.hashCode;
   }
 
   @override
@@ -110,8 +111,10 @@ class PolygonBorder extends OutlinedBorder {
     }
 
     final PolygonBorder typedOther = other;
-    return sides == typedOther.sides && rotate == typedOther.rotate &&
-        borderRadius == typedOther.borderRadius && side == typedOther.side;
+    return sides == typedOther.sides &&
+        rotate == typedOther.rotate &&
+        borderRadius == typedOther.borderRadius &&
+        side == typedOther.side;
   }
 
   @override
