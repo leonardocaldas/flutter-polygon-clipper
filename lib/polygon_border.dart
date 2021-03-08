@@ -3,9 +3,31 @@ import 'dart:ui';
 
 import 'package:flutter/painting.dart';
 import 'package:flutter/widgets.dart';
+
 import 'polygon_path_drawer.dart';
 
+/// A border that fits a polygon-shaped border with its number of sides equal to [sides], rotated by [rotate] degrees
+/// within the rectangle of the widget it is applied to.
+///
+/// To round the edges of the polygon, pass the desired angle to [borderRadius].
+/// There is a known issue where adding a [borderRadius] will reduce the size of the polygon,
+/// see <https://github.com/leonardocaldas/flutter-polygon-clipper/issues/4> for the status of this issue.
+///
+/// See also:
+///
+///  * [BorderSide], which is used to describe the border of the polygon.
 class PolygonBorder extends OutlinedBorder {
+  /// Create a PolygonBorder number of sides equal to [sides], rotated by [rotate] degrees.
+  ///
+  /// Provide a [borderRadius] to set the radius of the corners.
+  ///
+  /// Use [border] (typicaly called [side] in other implementations) to define the outline's color and weight.
+  /// If [border] is [BorderSide.none], which is the default, an outline is not drawn.
+  /// Otherwise the outline is centered over the shape's boundary.
+  ///
+  /// If [sides] is smaller than 3, it will be set to 3.
+  ///
+  /// All variables must not be null.
   const PolygonBorder({
     @required this.sides,
     this.rotate = 0.0,
