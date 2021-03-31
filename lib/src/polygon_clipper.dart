@@ -1,5 +1,5 @@
-import 'polygon_path_drawer.dart';
 import 'package:flutter/material.dart';
+import 'package:polygon_clipper/flutter_polygon.dart';
 
 class ClipPolygon extends StatelessWidget {
   final Widget child;
@@ -26,7 +26,7 @@ class ClipPolygon extends StatelessWidget {
     return AspectRatio(
         aspectRatio: 1.0,
         child: CustomPaint(
-            painter: BoxShadowPainter(specs, boxShadows),
+            painter: PolygonBoxShadowPainter(specs, boxShadows),
             child: ClipPath(
               clipper: PolygonClipper(specs),
               child: child,
@@ -50,11 +50,11 @@ class PolygonClipper extends CustomClipper<Path> {
   }
 }
 
-class BoxShadowPainter extends CustomPainter {
+class PolygonBoxShadowPainter extends CustomPainter {
   final PolygonPathSpecs specs;
   final List<PolygonBoxShadow> boxShadows;
 
-  BoxShadowPainter(this.specs, this.boxShadows);
+  PolygonBoxShadowPainter(this.specs, this.boxShadows);
 
   @override
   void paint(Canvas canvas, Size size) {
