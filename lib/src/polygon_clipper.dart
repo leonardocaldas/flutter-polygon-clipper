@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:polygon_clipper/flutter_polygon.dart';
 
+/// A widget that clips its child using a polygon.
 class ClipPolygon extends StatelessWidget {
   final Widget child;
   final int sides;
@@ -8,12 +9,20 @@ class ClipPolygon extends StatelessWidget {
   final double borderRadius;
   final List<PolygonBoxShadow> boxShadows;
 
+  /// Creates a polygon shaped clip with [sides] sides rotated [rotate] degrees.
+  ///
+  /// Provide a [borderRadius] to set the radius of the corners.
+  ///
+  /// The [sides] argument must be at least 3.
   ClipPolygon(
       {@required this.child,
       @required this.sides,
       this.rotate: 0.0,
       this.borderRadius: 0.0,
-      this.boxShadows: const []});
+      this.boxShadows: const []})
+      : assert(sides != null && sides >= 3),
+        assert(rotate != null),
+        assert(boxShadows != null);
 
   @override
   Widget build(BuildContext context) {
@@ -34,10 +43,12 @@ class ClipPolygon extends StatelessWidget {
   }
 }
 
+/// Provides polygon shaped clips based on [PolygonPathSpecs]
 class PolygonClipper extends CustomClipper<Path> {
   final PolygonPathSpecs specs;
 
-  PolygonClipper(this.specs);
+  /// Create a polygon clipper with the provided specs.
+  PolygonClipper(this.specs) : assert(specs != null);
 
   @override
   Path getClip(Size size) {
@@ -50,10 +61,12 @@ class PolygonClipper extends CustomClipper<Path> {
   }
 }
 
+/// A polygon shaped shadow
 class PolygonBoxShadowPainter extends CustomPainter {
   final PolygonPathSpecs specs;
   final List<PolygonBoxShadow> boxShadows;
 
+  /// Creates a polygon shaped shadow
   PolygonBoxShadowPainter(this.specs, this.boxShadows);
 
   @override
@@ -71,12 +84,15 @@ class PolygonBoxShadowPainter extends CustomPainter {
   }
 }
 
+/// Specifications of a polygon box shadow
 class PolygonBoxShadow {
   final Color color;
   final double elevation;
 
+  /// Creates a polygon box shadow with the provided [color] and [elevation].
   PolygonBoxShadow({
     @required this.color,
     @required this.elevation,
-  });
+  })  : assert(color != null),
+        assert(elevation != null);
 }

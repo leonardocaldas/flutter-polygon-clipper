@@ -9,13 +9,16 @@ import 'package:polygon_clipper/flutter_polygon.dart';
 /// within the rectangle of the widget it is applied to.
 ///
 /// To round the edges of the polygon, pass the desired angle to [borderRadius].
-/// There is a known issue where adding a [borderRadius] will reduce the size of the polygon,
-/// see <https://github.com/leonardocaldas/flutter-polygon-clipper/issues/4> for the status of this issue.
+/// There is a known issue where adding a [borderRadius] will reduce the size of the polygon.
 ///
 /// See also:
 ///
 ///  * [BorderSide], which is used to describe the border of the polygon.
 class PolygonBorder extends OutlinedBorder {
+  final int sides;
+  final double rotate;
+  final double borderRadius;
+
   /// Create a PolygonBorder number of sides equal to [sides], rotated by [rotate] degrees.
   ///
   /// Provide a [borderRadius] to set the radius of the corners.
@@ -38,10 +41,6 @@ class PolygonBorder extends OutlinedBorder {
         assert(borderRadius != null),
         assert(side != null),
         super(side: side);
-
-  final int sides;
-  final double rotate;
-  final double borderRadius;
 
   @override
   EdgeInsetsGeometry get dimensions => EdgeInsets.all(side.width);
