@@ -79,7 +79,7 @@ class ExampleApp extends StatelessWidget {
                           shape: PolygonBorder(
                               sides: 7,
                               borderRadius: 8.0,
-                              border: BorderSide(color: Colors.blue.shade800, width: 3))),
+                              side: BorderSide(color: Colors.blue.shade800, width: 3))),
                       child: Text('7'),
                     ),
                     Text('This decoration has seven sides.')

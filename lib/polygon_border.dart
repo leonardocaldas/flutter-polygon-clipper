@@ -21,8 +21,8 @@ class PolygonBorder extends OutlinedBorder {
   ///
   /// Provide a [borderRadius] to set the radius of the corners.
   ///
-  /// Use [border] (typicaly called [side] in other implementations) to define the outline's color and weight.
-  /// If [border] is [BorderSide.none], which is the default, an outline is not drawn.
+  /// Use [side] to define the outline's color and weight.
+  /// If [side] is [BorderSide.none], which is the default, an outline is not drawn.
   /// Otherwise the outline is centered over the shape's boundary.
   ///
   /// If [sides] is smaller than 3, it will be set to 3.
@@ -32,12 +32,12 @@ class PolygonBorder extends OutlinedBorder {
     @required this.sides,
     this.rotate = 0.0,
     this.borderRadius = 0.0,
-    BorderSide border = BorderSide.none,
+    BorderSide side = BorderSide.none,
   })  : assert(sides != null),
         assert(rotate != null),
         assert(borderRadius != null),
-        assert(border != null),
-        super(side: border);
+        assert(side != null),
+        super(side: side);
 
   final int sides;
   final double rotate;
@@ -65,7 +65,7 @@ class PolygonBorder extends OutlinedBorder {
         sides: sides,
         rotate: lerpDouble(a.rotate, rotate, t),
         borderRadius: lerpDouble(a.borderRadius, borderRadius, t),
-        border: BorderSide.lerp(a.side, side, t),
+        side: BorderSide.lerp(a.side, side, t),
       );
     } else {
       return super.lerpFrom(a, t);
@@ -79,7 +79,7 @@ class PolygonBorder extends OutlinedBorder {
         sides: sides,
         rotate: lerpDouble(rotate, b.rotate, t),
         borderRadius: lerpDouble(borderRadius, b.borderRadius, t),
-        border: BorderSide.lerp(side, b.side, t),
+        side: BorderSide.lerp(side, b.side, t),
       );
     } else {
       return super.lerpTo(b, t);
@@ -115,7 +115,7 @@ class PolygonBorder extends OutlinedBorder {
         sides: sides,
         rotate: rotate,
         borderRadius: borderRadius * t,
-        border: side.scale(t));
+        side: side.scale(t));
   }
 
   @override
@@ -144,7 +144,7 @@ class PolygonBorder extends OutlinedBorder {
     if (side == null) return this;
     return PolygonBorder(
       sides: sides,
-      border: side,
+      side: side,
       rotate: rotate,
       borderRadius: borderRadius,
     );
