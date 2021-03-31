@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:polygon_clipper/flutter_polygon.dart';
+import 'package:flutter_polygon/flutter_polygon.dart';
 
 /// A widget that clips its child using a polygon.
 class ClipPolygon extends StatelessWidget {

@@ -3,7 +3,7 @@ import 'dart:ui';
 
 import 'package:flutter/painting.dart';
 import 'package:flutter/widgets.dart';
-import 'package:polygon_clipper/flutter_polygon.dart';
+import 'package:flutter_polygon/flutter_polygon.dart';
 
 /// A border that fits a polygon-shaped border with its number of sides equal to [sides], rotated by [rotate] degrees
 /// within the rectangle of the widget it is applied to.
