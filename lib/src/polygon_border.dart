@@ -24,7 +24,7 @@ class PolygonBorder extends OutlinedBorder {
   /// If [side] is [BorderSide.none], which is the default, an outline is not drawn.
   /// Otherwise the outline is centered over the shape's boundary.
   ///
-  /// If [sides] is smaller than 3, it will be set to 3.
+  /// [sides] should be at least 3.
   ///
   /// All variables must not be null.
   const PolygonBorder({
@@ -33,6 +33,7 @@ class PolygonBorder extends OutlinedBorder {
     this.borderRadius = 0.0,
     BorderSide side = BorderSide.none,
   })  : assert(sides != null),
+        assert(sides >= 2),
         assert(rotate != null),
         assert(borderRadius != null),
         assert(side != null),
