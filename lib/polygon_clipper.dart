@@ -28,16 +28,16 @@ class ClipPolygon extends StatelessWidget {
         child: CustomPaint(
             painter: BoxShadowPainter(specs, boxShadows),
             child: ClipPath(
-              clipper: Polygon(specs),
+              clipper: PolygonClipper(specs),
               child: child,
             )));
   }
 }
 
-class Polygon extends CustomClipper<Path> {
+class PolygonClipper extends CustomClipper<Path> {
   final PolygonPathSpecs specs;
 
-  Polygon(this.specs);
+  PolygonClipper(this.specs);
 
   @override
   Path getClip(Size size) {
