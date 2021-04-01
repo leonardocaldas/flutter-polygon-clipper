@@ -1,32 +1,32 @@
-
-# Polygon Clipper  
+# flutter_polygon
   
-A Flutter plugin to create views using regular polygon shapes (e.g. Pentagons and Hexagons).  
+A Flutter plugin to create views using regular polygon shapes (e.g. Pentagons and Hexagons).
 
-[![pub package](https://img.shields.io/pub/v/polygon_clipper.svg)](https://pub.dartlang.org/packages/polygon_clipper)
-  
-![Example1](https://raw.githubusercontent.com/leonardocaldas/flutter-polygon-clipper/assets/imgs/screenshot1.png)
-![Example2](https://raw.githubusercontent.com/leonardocaldas/flutter-polygon-clipper/assets/imgs/screenshot2.png)
-![Example3](https://raw.githubusercontent.com/leonardocaldas/flutter-polygon-clipper/assets/imgs/screenshot3.png)
+Based on the [polygon_clipper](https://pub.dev/packages/polygon_clipper) package by [leonardocaldas](https://github.com/leonardocaldas). 
+
+![Example1](https://raw.githubusercontent.com/wietsebuseyne/flutter_polygon/doc/screenshot1.png)
+![Example2](https://raw.githubusercontent.com/wietsebuseyne/flutter_polygon/doc/screenshot2.png)
   
 ## Installation  
 Add this to your package's pubspec.yaml file:
 
 ```yaml
 dependencies:
-  polygon_clipper: ^1.0.2
+  flutter_polygon: ^0.1.0
 ```
   
-## Usage  
-  
-Using ClipPolygon widget
+## Usage
+
+### Clipping
+
+Use the `ClipPolygon` widget to clip a child widget.
 ``` dart
-import 'package:polygon_clipper/polygon_clipper.dart';  // Import package for ClipPolygon
+import 'package:flutter_polygon/flutter_polygon.dart';
 
 ClipPolygon(  
  sides: 6, 
- borderRadius: 5.0, // Default 0.0 degrees
- rotate: 90.0, // Default 0.0 degrees
+ borderRadius: 5.0,     // Defaults to 0.0 degrees
+ rotate: 90.0,          // Defaults to 0.0 degrees
  boxShadows: [  
   PolygonBoxShadow(color: Colors.black, elevation: 1.0),
   PolygonBoxShadow(color: Colors.grey, elevation: 5.0)
@@ -35,48 +35,30 @@ ClipPolygon(
 );
 ```  
 
-Using PolygonBorder shape
+### Borders
+
+Use the `PolygonBorder` shape with your favorites widgets! 
 ``` dart
-import 'package:polygon_clipper/polygon_border.dart'; // Import package for PolygonBorder
+import 'package:flutter_polygon/flutter_polygon.dart';
 
 FloatingActionButton(
   shape: PolygonBorder(
     sides: 5,
-    borderRadius: 5.0, // Default 0.0 degrees
-    rotate: 90.0, // Default 0.0 degrees
-    border: BorderSide.none, // Default BorderSide.none
+    borderRadius: 5.0,                                      // Defaults to 0.0 degrees
+    rotate: 90.0,                                           // Defaults to 0.0 degrees
+    border: BorderSide(color: Colors.red, width: 2.0),      // Defaults to BorderSide.none
   ),
   onPressed: runAction,
   child: Icon(Icons.star),
 ),
 ```
-  
-## Parameters  
-
-##### ClipPolygon
-| Param | Type | Description |
- |---|---|---|  
-| sides | int | The number of sides to draw the polygon
-| borderRadius | double | The length of the border radius in degrees.
-| rotate | double | The initial polygon rotation in degrees.
-| child | Widget | The widget that will be rendered inside the polygon.
-| boxShadows | PolygonBoxShadow[] |A list of box shadows.
-
-##### PolygonBoxShadow
-
-| Param | Type | Description |
- |---|---|---|  
-| color | Color | The color of the box shadow.
-| elevation | double | The distance of the shadow.
-
-##### PolygonBorder
-| Param | Type | Description |
- |---|---|---|  
-| sides | int | The number of sides to draw the polygon
-| borderRadius | double | The length of the border radius in degrees.
-| rotate | double | The initial polygon rotation in degrees.
-| border | BorderSide | The style of the border (when `PolygonBorder` is used as a decoration in `Container`, etc.)
 
 ## Contributing
 
+If you find an issue with this package, please open an issue on [github](https://github.com/wietsebuseyne/flutter_polygon).
+
 If you wish to contribute to this project, I encourage you to open a pull request.
+
+## Credit
+
+Based on the [polygon_clipper](https://pub.dev/packages/polygon_clipper) package by [leonardocaldas](https://github.com/leonardocaldas).
