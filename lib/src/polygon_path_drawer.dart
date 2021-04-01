@@ -10,8 +10,8 @@ class PolygonPathDrawer {
 
   /// Creates a polygon path drawer.
   PolygonPathDrawer({
-    @required this.size,
-    @required this.specs,
+    required this.size,
+    required this.specs,
   });
 
   Path draw() {
@@ -86,9 +86,9 @@ class PolygonPathSpecs {
 
   /// Creates polygon path specs.
   PolygonPathSpecs({
-    @required this.sides,
-    @required this.rotate,
-    @required this.borderRadiusAngle,
-  })  : halfBorderRadiusAngle = borderRadiusAngle / 2,
+    required this.sides,
+    required this.rotate,
+    required this.borderRadiusAngle,
+  })   : halfBorderRadiusAngle = borderRadiusAngle / 2,
         assert(sides >= 3);
 }

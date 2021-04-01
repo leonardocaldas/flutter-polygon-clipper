@@ -6,7 +6,7 @@ import 'package:flutter_polygon/flutter_polygon.dart';
 /// To round the edges of the polygon, pass the desired angle to [borderRadius].
 /// There is a known issue where adding a [borderRadius] will reduce the size of the polygon.
 class ClipPolygon extends StatelessWidget {
-  final Widget child;
+  final Widget? child;
   final int sides;
   final double rotate;
   final double borderRadius;
@@ -18,14 +18,12 @@ class ClipPolygon extends StatelessWidget {
   ///
   /// The [sides] argument must be at least 3.
   ClipPolygon(
-      {@required this.sides,
+      {required this.sides,
       this.rotate: 0.0,
       this.borderRadius: 0.0,
       this.boxShadows: const [],
       this.child})
-      : assert(sides != null && sides >= 3),
-        assert(rotate != null),
-        assert(boxShadows != null);
+      : assert(sides >= 3);
 
   @override
   Widget build(BuildContext context) {
@@ -51,7 +49,7 @@ class PolygonClipper extends CustomClipper<Path> {
   final PolygonPathSpecs specs;
 
   /// Create a polygon clipper with the provided specs.
-  PolygonClipper(this.specs) : assert(specs != null);
+  PolygonClipper(this.specs);
 
   @override
   Path getClip(Size size) {
@@ -94,8 +92,7 @@ class PolygonBoxShadow {
 
   /// Creates a polygon box shadow with the provided [color] and [elevation].
   PolygonBoxShadow({
-    @required this.color,
-    @required this.elevation,
-  })  : assert(color != null),
-        assert(elevation != null);
+    required this.color,
+    required this.elevation,
+  });
 }
