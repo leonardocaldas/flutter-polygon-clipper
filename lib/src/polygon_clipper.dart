@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_polygon/flutter_polygon.dart';
 
-/// A widget that clips its child using a polygon.
+/// A widget that clips its child using a polygon with its number of sides equal to [sides], rotated by [rotate] degrees.
+///
+/// To round the edges of the polygon, pass the desired angle to [borderRadius].
+/// There is a known issue where adding a [borderRadius] will reduce the size of the polygon.
 class ClipPolygon extends StatelessWidget {
   final Widget child;
   final int sides;
