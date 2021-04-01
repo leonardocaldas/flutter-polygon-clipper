@@ -43,15 +43,22 @@ import 'package:flutter_polygon/flutter_polygon.dart';
 
 FloatingActionButton(
   shape: PolygonBorder(
-    sides: 5,
+    sides: 6,
     borderRadius: 5.0,                                      // Defaults to 0.0 degrees
-    rotate: 90.0,                                           // Defaults to 0.0 degrees
+    rotate: 30.0,                                           // Defaults to 0.0 degrees
     border: BorderSide(color: Colors.red, width: 2.0),      // Defaults to BorderSide.none
   ),
-  onPressed: runAction,
+  onPressed: () {},
   child: Icon(Icons.star),
 ),
 ```
+
+Other widgets:
+
+* `TextButton`, `ElevatedButton`, ...
+* `Container`
+* `Chip`
+* ...
 
 ## Contributing
 
