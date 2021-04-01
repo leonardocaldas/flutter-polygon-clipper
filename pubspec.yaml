@@ -1,6 +1,6 @@
 name: flutter_polygon
 description: A plugin with tools for working with polygons in Flutter. Provides a clipper (PolygonClipper, ClipPolygon) and border (PolygonBorder)
-version: 0.1.0
+version: 0.2.0
 homepage: https://github.com/wietsebuseyne/flutter_polygon
 
 dependencies:
