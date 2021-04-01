@@ -1,7 +1,7 @@
 import 'dart:math';
 import 'dart:ui';
 
-import 'package:meta/meta.dart';
+import 'package:flutter/material.dart';
 
 /// Class that draws a polygon path based on [PolygonPathSpecs].
 class PolygonPathDrawer {
