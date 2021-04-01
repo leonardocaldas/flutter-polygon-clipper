@@ -5,7 +5,6 @@ import 'package:flutter/material.dart';
 
 /// Class that draws a polygon path based on [PolygonPathSpecs].
 class PolygonPathDrawer {
-  final Path path;
   final Size size;
   final PolygonPathSpecs specs;
 
@@ -13,7 +12,7 @@ class PolygonPathDrawer {
   PolygonPathDrawer({
     @required this.size,
     @required this.specs,
-  }) : path = Path();
+  });
 
   Path draw() {
     final anglePerSide = 360 / specs.sides;
