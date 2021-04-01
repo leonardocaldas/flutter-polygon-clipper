@@ -12,7 +12,7 @@ Add this to your package's pubspec.yaml file:
 
 ```yaml
 dependencies:
-  flutter_polygon: ^0.1.0
+  flutter_polygon: ^0.2.0
 ```
   
 ## Usage
