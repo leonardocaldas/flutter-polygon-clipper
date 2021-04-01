@@ -18,11 +18,11 @@ class ClipPolygon extends StatelessWidget {
   ///
   /// The [sides] argument must be at least 3.
   ClipPolygon(
-      {@required this.child,
-      @required this.sides,
+      {@required this.sides,
       this.rotate: 0.0,
       this.borderRadius: 0.0,
-      this.boxShadows: const []})
+      this.boxShadows: const [],
+      this.child})
       : assert(sides != null && sides >= 3),
         assert(rotate != null),
         assert(boxShadows != null);
