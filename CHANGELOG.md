@@ -1,17 +1,9 @@
-# CHANGELOG
+## 0.2.0
 
-## v1.0.0
+* Migrate to null-safety
+* Minimum Dart SDK 2.12.0
+* Added `key` parameter to `ClipPolygon`
 
-First release with:
+## 0.1.0
 
-* Ability to create polygon views
-* Ability to round the corners
-* Ability to add a list of shadows
-
-## v1.0.1
-
-* Upgrading to Dart 2
-
-## v1.0.2
-
-* Added PolygonBorder shape for use in FABs, decorations, etc.
+* Initial release

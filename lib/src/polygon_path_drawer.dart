@@ -1,16 +1,18 @@
 import 'dart:math';
 import 'dart:ui';
+
 import 'package:flutter/material.dart';
 
+/// Class that draws a polygon path based on [PolygonPathSpecs].
 class PolygonPathDrawer {
-  final Path path;
   final Size size;
   final PolygonPathSpecs specs;
 
+  /// Creates a polygon path drawer.
   PolygonPathDrawer({
-    @required this.size,
-    @required this.specs,
-  }) : path = Path();
+    required this.size,
+    required this.specs,
+  });
 
   Path draw() {
     final anglePerSide = 360 / specs.sides;
@@ -75,15 +77,18 @@ class PolygonPathDrawer {
   }
 }
 
+/// Specs class for polygon paths.
 class PolygonPathSpecs {
   final int sides;
   final double rotate;
   final double borderRadiusAngle;
   final double halfBorderRadiusAngle;
 
+  /// Creates polygon path specs.
   PolygonPathSpecs({
-    @required this.sides,
-    @required this.rotate,
-    @required this.borderRadiusAngle,
-  }) : halfBorderRadiusAngle = borderRadiusAngle / 2;
+    required this.sides,
+    required this.rotate,
+    required this.borderRadiusAngle,
+  })   : halfBorderRadiusAngle = borderRadiusAngle / 2,
+        assert(sides >= 3);
 }
