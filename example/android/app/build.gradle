@@ -26,8 +26,8 @@ apply plugin: 'kotlin-android'
 apply from: "$flutterRoot/packages/flutter_tools/gradle/flutter.gradle"
 
 android {
-    compileSdkVersion 30
-    ndkVersion = "20.1.5948944"
+    compileSdkVersion 33
+
 
     sourceSets {
         main.java.srcDirs += 'src/main/kotlin'
@@ -35,8 +35,8 @@ android {
 
     defaultConfig {
         applicationId "com.example.example"
-        minSdkVersion 16
-        targetSdkVersion 30
+        minSdkVersion 21
+        targetSdkVersion 33
         versionCode flutterVersionCode.toInteger()
         versionName flutterVersionName
     }
